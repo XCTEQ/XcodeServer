@@ -7,7 +7,7 @@ galaxy_info:
   platforms:
     - name: MacOSX
       versions:
-        - 10.13
+        - all
         - any
   galaxy_tags:
     - ios
