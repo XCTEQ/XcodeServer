@@ -63,7 +63,7 @@ Imagine, you have fresh Mac with fresh macOS installed. You can setup all your X
 
 Assuming you have installed Ansible, we can download the role by running command
 
-           $ $ ansible-galaxy install Shashikant86.xcodeserver
+           $ $ ansible-galaxy install Shashikant86.XcodeServer
 
 Now that, we have to create our own playbook for this role by setting variables,  We can use `defaults/main.tml` file [here](https://github.com/Shashikant86/iOS-Dev-Ansible/blob/master/defaults/main.yml). The example playbook looks like this
 
@@ -153,7 +153,7 @@ Create `xcs_playbook.yml` like this inside the 'XcodeServer` directory with foll
       - postman
 
   roles:
-    - Shashikant86.xcodeserver
+    - Shashikant86.XcodeServer
 
 
 ```

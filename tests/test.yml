@@ -69,4 +69,4 @@
       - postman
 
   roles:
-    - Shashikant86.xcodeserver
+    - Shashikant86.XcodeServer
