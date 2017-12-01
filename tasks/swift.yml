@@ -1,0 +1,9 @@
+---
+- name: Get Current Swift Toolchain
+  stat:
+    path: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift
+  register: swift_toolchain_path
+
+- name: Ensure Swift is using default Keychain
+  debug: msg="Swift toolchain is correct"
+  when: swift_toolchain_path.stat.exists == True

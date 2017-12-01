@@ -1,0 +1,38 @@
+---
+- name: Clean Old Xcode if Exists
+  include: clean_xcode.yml
+  when: clean_xcode
+
+- name: Clean Old RVM if Exists
+  include: clean_rvm.yml
+  when: clean_rvm
+
+- name: Clean Old Homebrew if Exists
+  include: clean_homebrew.yml
+  when: clean_homebrew
+
+- name: Install Xcode by Placing DMG/XIP inside files dorectoty or providing path
+  include: xcode.yml
+  when: configure_xcode
+
+- name: Check Swift Toolchain
+  include: swift.yml
+
+- name: Configure Xcode Sserver for CI
+  include: xcode_server.yml
+  when: configure_xcodeserver
+
+- name: Install Xcode Command Line Tools
+  include: macos-commandline-tools.yml
+
+- name: Run macOS Tasks
+  include: macos-defaults.yml
+  when: configure_macos_defaults
+
+- name: Homebrew Tasks to setup Homebrew packages and Homebrew cask applications
+  include: homebrew.yml
+  when: configure_homebrew
+
+- name: Run Ruby Tasks to set RVM and Rubygems
+  include: ruby-setup.yml
+  when: configure_ruby_rvm

@@ -1,0 +1,17 @@
+---
+  - name: Check if Homebrew is installed
+    stat: path=/usr/local/bin/brew
+    register: homebrew_binary
+
+
+  - name: Remove Homebrew
+    command: bash -c 'sudo rm -rf /usr/local/Homebrew'
+    when: homebrew_binary.stat.exists == True
+
+  - name: Remove Homebrew
+    command: bash -c 'sudo rm -rf /usr/local/Caskroom'
+    when: homebrew_binary.stat.exists == True
+
+  - name: Remove Homebrew
+    command: bash -c 'sudo rm -rf /usr/local/bin/brew'
+    when: homebrew_binary.stat.exists == True

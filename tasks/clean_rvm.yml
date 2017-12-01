@@ -1,0 +1,28 @@
+---
+  - name: Check if RVM is installed
+    stat: path=~/.rvm/
+    register: rvm_dir
+
+  - name: Remove RVM
+    command: bash -c 'rm -rf $HOME/.rvm'
+    when: rvm_dir.stat.exists == True
+
+  - name: Remove RVM
+    command: bash -c 'rm -rf $HOME/.rvmrc'
+    when: rvm_dir.stat.exists == True
+
+  - name: Remove RVM
+    command: bash -c 'rm -rf /etc/rvmrc'
+    when: rvm_dir.stat.exists == True
+
+  - name: Remove RVM
+    command: bash -c 'rm -rf /etc/profile.d/rvm.sh'
+    when: rvm_dir.stat.exists == True
+
+  - name: Remove RVM
+    command: bash -c 'rm -rf /usr/local/rvm'
+    when: rvm_dir.stat.exists == True
+
+  - name: Remove RVM
+    command: bash -c 'rm -rf /usr/local/bin/rvm'
+    when: rvm_dir.stat.exists == True

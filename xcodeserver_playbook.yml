@@ -1,0 +1,91 @@
+---
+- hosts: localhost
+  connection: local
+
+  vars:
+    clean_xcode: yes
+    clean_rvm: yes
+    clean_homebrew: yes
+
+    configure_xcode: yes
+    configure_xcodeserver: yes
+    configure_macos_defaults: yes
+    configure_ruby_rvm: yes
+    configure_homebrew: yes
+
+    xcode_src: Xcode_9.1.xip
+
+    xcode_server_user: shashi
+    ansible_ssh_user: shashi
+
+    ruby_version: 2.4.0
+    rubygems_packages_to_install:
+      - bundler
+      - xcpretty
+
+    macos_sleep_options:
+      - systemsetup -setsleep Never
+      - systemsetup -setharddisksleep Never
+      - systemsetup -setcomputersleep Never
+
+    macos_animation_options:
+      - defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
+      - defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
+      - defaults write com.apple.dock expose-animation-duration -int 0
+      - defaults write com.apple.dock launchanim -bool false
+
+    macos_software_autoupdates:
+      - softwareupdate --schedule off
+
+
+    homebrew_use_brewfile: true
+    homebrew_brewfile_dir: '~'
+    homebrew_repo: https://github.com/Homebrew/brew
+    homebrew_prefix: /usr/local
+    homebrew_install_path: "{{ homebrew_prefix }}/Homebrew"
+    homebrew_brew_bin_path: /usr/local/bin
+    homebrew_upgrade_all_packages: no
+
+
+    homebrew_installed_packages:
+      - autoconf
+      - bash-completion
+      - git
+      - carthage
+      - gpg
+      - boost
+      - cmake
+      - ssh-copy-id
+      - openssl
+      - wget
+      - curl
+
+    homebrew_taps:
+      - homebrew/core
+      - caskroom/cask
+      - homebrew/binary
+      - homebrew/dupes
+      - homebrew/versions
+
+    homebrew_cask_apps:
+      - postman
+
+  tasks:
+   - include: tasks/clean_xcode.yml
+     when: clean_xcode
+   - include: tasks/clean_rvm.yml
+     when: clean_rvm
+   - include: tasks/clean_homebrew.yml
+     when: clean_homebrew
+   - include: tasks/xcode.yml
+     when: configure_xcode
+   - include: tasks/swift.yml
+   - include: tasks/xcode_server.yml
+     when: configure_xcodeserver
+   - include: tasks/macos-commandline-tools.yml
+   - include: tasks/macos-defaults.yml
+     when: configure_macos_defaults
+   - include: tasks/homebrew.yml
+     when: configure_homebrew
+   - include: tasks/ruby-setup.yml
+     when: configure_ruby_rvm

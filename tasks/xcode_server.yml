@@ -1,0 +1,13 @@
+---
+
+  - name:  Start Xcode Server with given user
+    command: bash -c 'sudo xcrun xcscontrol --initialize --build-service-user {{xcode_server_user}}'
+
+  - name:  COnfigure Xcode Server Certificate
+    command: bash -c 'sudo xcrun xcscontrol --configure-ota-certificate'
+
+  - name:  Configure Xcode Server timeout
+    command: bash -c 'sudo xcrun xcscontrol --configure-integration-timeout 3600'
+
+  - name:  Check Xcode Server Health
+    command: bash -c 'sudo xcrun xcscontrol --health'

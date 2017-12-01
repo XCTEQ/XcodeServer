@@ -1,0 +1,61 @@
+---
+clean_xcode: yes
+clean_rvm: yes
+clean_homebrew: yes
+configure_xcode: yes
+configure_xcodeserver: yes
+configure_macos_defaults: yes
+configure_ruby_rvm: yes
+configure_homebrew: yes
+
+ruby_version: 2.4.0
+rubygems_packages_to_install:
+  - bundler
+  - xcpretty
+
+macos_sleep_options:
+  - systemsetup -setsleep Never
+  - systemsetup -setharddisksleep Never
+  - systemsetup -setcomputersleep Never
+
+macos_animation_options:
+  - defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
+  - defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
+  - defaults write com.apple.dock expose-animation-duration -int 0
+  - defaults write com.apple.dock launchanim -bool false
+
+macos_software_autoupdates:
+  - softwareupdate --schedule off
+
+
+homebrew_use_brewfile: true
+homebrew_brewfile_dir: '~'
+homebrew_repo: https://github.com/Homebrew/brew
+homebrew_prefix: /usr/local
+homebrew_install_path: "{{ homebrew_prefix }}/Homebrew"
+homebrew_brew_bin_path: /usr/local/bin
+homebrew_upgrade_all_packages: no
+
+
+homebrew_installed_packages:
+  - autoconf
+  - bash-completion
+  - git
+  - carthage
+  - gpg
+  - boost
+  - cmake
+  - ssh-copy-id
+  - openssl
+  - wget
+  - curl
+
+homebrew_taps:
+  - homebrew/core
+  - caskroom/cask
+  - homebrew/binary
+  - homebrew/dupes
+  - homebrew/versions
+
+homebrew_cask_apps:
+  - sourcetree

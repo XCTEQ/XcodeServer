@@ -1,0 +1,32 @@
+---
+  - name: Check if Xcode is already installed
+    stat: path=/Applications/Xcode.app/
+    register: xcode_dir
+
+  - name: Remove Xcode App
+    command: bash -c 'sudo rm -rf /Applications/Xcode.app'
+    when: xcode_dir.stat.exists == True
+
+  - name: Remove Xcode System Preferences
+    command: bash -c 'sudo rm -rf /Library/Preferences/com.apple.dt.Xcode.plist'
+    when: xcode_dir.stat.exists == True
+
+  - name: Remove Xcode local preferences
+    command: bash -c 'sudo rm -rf ~/Library/Preferences/com.apple.dt.Xcode.plist'
+    when: xcode_dir.stat.exists == True
+
+  - name: Remove Xcode local Cache
+    command: bash -c 'sudo rm -rf ~/Library/Caches/com.apple.dt.Xcode'
+    when: xcode_dir.stat.exists == True
+
+  - name: Remove Xcode App support
+    command: bash -c 'sudo rm -rf /Library/Application\ Support/Xcode'
+    when: xcode_dir.stat.exists == True
+
+  - name: Remove Xcode Developer Dir
+    command: bash -c 'sudo rm -rf ~/Library/Developer/'
+    when: xcode_dir.stat.exists == True
+
+  - name: Remove Xcode Command Line Tools
+    command: bash -c 'sudo rm -rf /Library/Developer/CommandLineTools'
+    when: xcode_dir.stat.exists == True
