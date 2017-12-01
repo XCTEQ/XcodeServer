@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: shashikant86
-  description: Xcode Server: Setup macOS for Continuous Integration using Apple's Xcode Server
+  description: Xcode Server Setup macOS for Continuous Integration using Apple Xcode Server
   license: "license (BSD, MIT)"
   min_ansible_version: 2.2
   platforms:
