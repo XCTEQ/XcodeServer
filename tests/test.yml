@@ -5,12 +5,12 @@
 
   vars:
     clean_xcode: no
-    clean_rvm: yes
-    clean_homebrew: yes
-    configure_xcode: yes
+    clean_rvm: no
+    clean_homebrew: no
+    configure_xcode: no
     configure_xcodeserver: yes
     configure_macos_defaults: yes
-    configure_ruby_rvm: yes
+    configure_ruby_rvm: no
     configure_homebrew: yes
     xcode_src: Xcode_9.1.xip
     xcode_server_user: travis
